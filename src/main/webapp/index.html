@@ -15,9 +15,17 @@ $.ajax({
   }
 });
 
+
+$( "#loginDiv" ).hide();
 $( "#registerDiv" ).hide();
 $( "#productsDiv" ).hide();
 $( "#productDiv" ).hide();
+
+setTimeout(function() {
+	$( "#initScreen" ).hide();
+	$( "#loginDiv" ).show();
+}, 3000);
+
 
 $( "#login" ).click(function() {
 	var myusername = $("#username").val();
@@ -112,6 +120,9 @@ function deleteItem(item) {
 </script>
 </head>
 <body>
+	<div id="initScreen">
+		<img src="https://photos-6.dropbox.com/t/2/AADoA6e4BJis-Mz2Tut4bszJTP9ly2CvfccFsRFxIwLQNQ/12/64874334/png/32x32/1/_/1/2/Salata%20inicio.png/EIHKqzIYrnggAigC/IybePGHhjh6Is04nlt4Blc7iT54AHuwa9DcLVN7iCnc?preserve_transparency=1&size=32x32&size_mode=5" alt="Imagen inicio" style="width:60%;position:absolute;top:20%;left:20%;">
+	</div>
 	<div id="loginDiv">
 		Usuario: <input type="text" name="username" id="username">
 		<button type="button" id="login">Entrar</button>
