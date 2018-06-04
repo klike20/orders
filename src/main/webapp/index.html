@@ -15,6 +15,8 @@ $.ajax({
   }
 });
 
+var x = document.getElementsByTagName("BODY")[0];
+x.style.backgroundColor = "#F5F5E7";
 
 $( "#loginDiv" ).hide();
 $( "#registerDiv" ).hide();
@@ -22,6 +24,7 @@ $( "#productsDiv" ).hide();
 $( "#productDiv" ).hide();
 
 setTimeout(function() {
+	x.style.backgroundColor = "white";
 	$( "#initScreen" ).hide();
 	$( "#loginDiv" ).show();
 }, 3000);
