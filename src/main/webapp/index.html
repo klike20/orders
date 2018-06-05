@@ -3,6 +3,10 @@
 <script src="jquery-3.3.1.min.js"></script>
 <script>
 $( document ).ready(function() {
+	
+var userId = "";
+var officeId = "";
+	
 var i = 0;
 var myusername = $("#username").val();
 $.ajax({
@@ -31,14 +35,25 @@ setTimeout(function() {
 
 
 $( "#login" ).click(function() {
-	var myusername = $("#username").val();
+	var username = $("#username").val();
+	var password = $("#password").val();
+	var theData = username+","+password;
 	$.ajax({
-		  type: "POST",
-		  url: "/rest/companies",
-		  data: myusername,
+		  type: "GET",
+		  url: "rest/user",
+		  data: "data="+theData,
 		  cache: false,
 		  success: function(data){
 		     $("#resultarea").text(data);
+		     if (data == "failed") {
+		    	 	$("#resultarea").text("El usuario no existe");
+		     } else {
+		    	    var array = data.split(',')
+		    	 	userId = array[0];
+		    	    officeId = array[1];
+		    		$( "#loginDiv" ).hide();
+		    		$( "#productsDiv" ).show();
+		     }
 		  }
 		});
 });
@@ -94,7 +109,7 @@ $( "#submitRegister" ).click(function() {
  });
  
  $( "#send" ).click(function() {
-	 var order = "";
+	 var order = officeId+","+userId+";";
 	 $('[name="productsItem"]').each(function() {
 		  order = order + $( this ).val() + ";";
 		});
@@ -128,6 +143,7 @@ function deleteItem(item) {
 	</div>
 	<div id="loginDiv">
 		Usuario: <input type="text" name="username" id="username">
+		Contraseña: <input type="text" name="password" id="password">
 		<button type="button" id="login">Entrar</button>
 		<button type="button" id="register">Registrarse</button>
 	</div>
@@ -141,8 +157,8 @@ function deleteItem(item) {
 	<div id="productsDiv">
 		Agregar producto: <button type="button" id="addProduct">+</button>
 		
-		<ul id="products">
-		</ul>
+		<ol id="products">
+		</ol>
 		
 		<button type="button" id="send">Enviar</button>
 	</div>

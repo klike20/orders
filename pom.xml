@@ -7,6 +7,7 @@
   <version>0.0.1-SNAPSHOT</version>
   <name>orders Maven Webapp</name>
   <url>http://maven.apache.org</url>
+    
   <dependencies>
     <dependency>
       <groupId>junit</groupId>
@@ -84,5 +85,15 @@
   </dependencies>
   <build>
     <finalName>orders</finalName>
+    <plugins>
+        <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-war-plugin</artifactId>
+            <configuration>
+                <outputDirectory>/Users/luiscifuentes/Downloads/apache-tomcat-9.0.7/webapps</outputDirectory>
+            </configuration>
+        </plugin>
+    </plugins>
   </build>
+  
 </project>

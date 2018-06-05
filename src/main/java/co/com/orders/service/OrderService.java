@@ -68,7 +68,9 @@ public class OrderService {
 			PreparedStatement st = null;
 			
 			try {
-				st = connection.prepareStatement("INSERT INTO ORDER (ORDER) VALUES (?)");
+				st = connection.prepareStatement("INSERT INTO public.\"ORDER\"(\n" + 
+						"	\"order\")\n" + 
+						"	VALUES (?)");
 				st.setString(1, msg);
 				st.executeUpdate();	
 			} catch (SQLException e) {
