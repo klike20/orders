@@ -1,0 +1,82 @@
+* {
+    box-sizing: border-box;
+}
+.menu {
+    width: 25%;
+    float: left;
+    padding: 15px;
+    border: 1px solid red;
+}
+.main {
+    width: 75%;
+    float: left;
+    padding: 15px;
+    border: 1px solid red;
+}
+header, footer {
+    padding: 0.01em;
+    color: white;
+    background-color: #0BB453;
+    clear: left;
+    text-align: left;
+}
+input {
+  border: 1px solid transparent;
+  background-color: #f1f1f1;
+  padding: 10px;
+  font-size: 16px;
+}
+input[type=text] {
+  background-color: #f1f1f1;
+}
+button[type=button] {
+  font-size: 16px;
+  background-color: #0BB453;
+  color: white;
+  cursor: pointer;
+}
+.center-container{
+	text-align: center;
+}
+/* Posiciones */
+.AppO-top,.AppO-bottom{position:fixed;width:100%;z-index:1}.AppO-top{top:0}.AppO-bottom{bottom:0}
+.AppO-left{float:left!important}.AppO-right{float:right!important}
+
+/* botones */
+.AppO-button{border:none;display:inline-block;padding:8px 16px;vertical-align:middle;overflow:hidden;text-decoration:none;color:inherit;background-color:inherit;text-align:center;cursor:pointer;white-space:nowrap}
+.AppO-button{-webkit-touch-callout:none;-webkit-user-select:none;-khtml-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}  
+.AppO-disabled,.AppO-button:disabled{cursor:not-allowed;opacity:0.3}.AppO-disabled *,:disabled *{pointer-events:none}
+.AppO-button:hover{color:#000!important;background-color:#ccc!important}
+
+/* barras */
+.AppO-bar{width:100%;overflow:hidden}.AppO-center .AppO-bar{display:inline-block;width:auto}
+.AppO-bar .AppO-bar-item{padding:16px 16px;float:left;width:auto;border:none;display:block;outline:0}
+.AppO-bar .AppO-dropdown-hover,.AppO-bar .AppO-dropdown-click{position:static;float:left}
+.AppO-bar .AppO-button{white-space:normal}
+.AppO-bar-block .AppO-bar-item{width:100%;display:block;padding:8px 16px;text-align:left;border:none;white-space:normal;float:none;outline:0}
+.AppO-bar-block .AppO-center .AppO-bar-item{text-align:center}.AppO-block{display:block;width:100%}
+.AppO-sidebar{height:100%;width:200px;background-color:#fff;position:fixed!important;z-index:1;overflow:auto}
+
+/* temas */
+.AppO-theme {color:white !important; background-color:#0BB453 !important}
+.AppO-theme-l5 {color:#000 !important; background-color:#f0f0f0 !important}
+
+/* alineaciones de texto */
+.AppO-left-align{text-align:left!important}.AppO-right-align{text-align:right!important}.AppO-justify{text-align:justify!important}.AppO-center{text-align:center!important}
+
+/* Tamano de letras */
+.AppO-tiny{font-size:10px!important}.AppO-small{font-size:12px!important}.AppO-medium{font-size:15px!important}.AppO-large{font-size:18px!important}
+.AppO-xlarge{font-size:24px!important}.AppO-xxlarge{font-size:36px!important}.AppO-xxxlarge{font-size:48px!important}.AppO-jumbo{font-size:64px!important}
+
+/* menu bars */
+.fa{display:inline-block;font:normal normal normal 14px/1;font-size:inherit;text-rendering:auto;}
+.fa-bars:before{content:"\f0c9"}
+.fa-remove:before{content:"\f00d"}
+.AppO-sidebar.AppO-collapse{display:none}
+.AppO-animate-left{position:relative;animation:animateleft 0.4s}@keyframes animateleft{from{left:-300px;opacity:0} to{left:0;opacity:1}}
+
+/* espaciado */
+.AppO-padding-small{padding:4px 8px!important}.AppO-padding{padding:8px 16px!important}.AppO-padding-large{padding:12px 24px!important}
+
+.AppO-overlay{position:fixed;display:none;width:100%;height:100%;top:0;left:0;right:0;bottom:0;background-color:rgba(0,0,0,0.5);z-index:0}
+

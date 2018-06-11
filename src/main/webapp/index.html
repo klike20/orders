@@ -1,31 +1,7 @@
 <html>
 <head>
+<link rel="stylesheet" type="text/css" href="orderscont.css">
 <style>
-header, footer {
-    padding: 0.01em;
-    color: white;
-    background-color: #0BB453;
-    clear: left;
-    text-align: left;
-}
-input {
-  border: 1px solid transparent;
-  background-color: #f1f1f1;
-  padding: 10px;
-  font-size: 16px;
-}
-input[type=text] {
-  background-color: #f1f1f1;
-}
-button[type=button] {
-  font-size: 16px;
-  background-color: #0BB453;
-  color: white;
-  cursor: pointer;
-}
-.center-container{
-	text-align: center;
-}
 </style>
 <script src="jquery-3.3.1.min.js"></script>
 <script>
@@ -58,7 +34,7 @@ setTimeout(function() {
 	x.style.backgroundColor = "white";
 	$( "#initScreen" ).hide();
 	$( "#loginDiv" ).show();
-}, 3000);
+}, 1500);
 
 
 $( "#login" ).click(function() {
@@ -163,20 +139,82 @@ function deleteItem(item) {
 	 $(item).parent().remove();
 }
 </script>
+<script>
+// Toggle between showing and hiding the sidebar, and add overlay effect
+function Appmenu_open() {
+
+// Get the Sidebar
+var mySidebar = document.getElementById("mySidebar");
+
+// Get the DIV with overlay effect
+var overlayBg = document.getElementById("myOverlay");
+
+    if (mySidebar.style.display === 'block') {
+        mySidebar.style.display = 'none';
+        overlayBg.style.display = "none";
+    } else {
+        mySidebar.style.display = 'block';
+        overlayBg.style.display = "block";
+    }
+}
+
+// Close the sidebar with the close button
+function Appmenu_close() {
+// Get the Sidebar
+var mySidebar = document.getElementById("mySidebar");
+
+// Get the DIV with overlay effect
+var overlayBg = document.getElementById("myOverlay");
+
+    mySidebar.style.display = "none";
+    overlayBg.style.display = "none";
+}
+</script>
+
 </head>
 <body>
 	<div id="initScreen">
-		<img src="https://photos-6.dropbox.com/t/2/AADoA6e4BJis-Mz2Tut4bszJTP9ly2CvfccFsRFxIwLQNQ/12/64874334/png/32x32/1/_/1/2/Salata%20inicio.png/EIHKqzIYrnggAigC/IybePGHhjh6Is04nlt4Blc7iT54AHuwa9DcLVN7iCnc?preserve_transparency=1&size=32x32&size_mode=5" alt="Imagen inicio" style="width:60%;position:absolute;top:20%;left:20%;">
+		<img src="Salata.png" alt="Logo" style="width:60%;position:absolute;top:20%;left:20%;">
 	</div>
 	<div id="loginDiv" class="center-container">
 		<header>
-   		<h1>Iniciar Sesion</h1>
+		<!-- Navbar -->
+		<div class="AppO-top">
+  			<div class="AppO-bar AppO-theme AppO-top AppO-left-align AppO-large">
+    		<a class="AppO-bar-item AppO-button AppO-left AppO-large" href="javascript:void(0)" onclick="Appmenu_open()">
+    			<i class="fa fa-bars"></i>
+    		</a>
+    		<a class="AppO-bar-item">Iniciar Sesi&oacute;n</a>
+  			</div>
+		</div>
+
+		<!-- Sidebar -->
+		<nav class="AppO-sidebar AppO-bar-block AppO-collapse AppO-large AppO-theme-l5 AppO-animate-left" id="mySidebar">
+	  		<a href="javascript:void(0)" onclick="Appmenu_close()" class="AppO-right AppO-xlarge AppO-padding-large" title="Close Menu">
+	    	<i class="fa fa-remove"></i>
+	  		</a>
+			  <h4 class="AppO-bar-item"><b>Menu</b></h4>
+			  <a class="AppO-bar-item AppO-button" href="#">Inicio</a>
+			  <a class="AppO-bar-item AppO-button" href="#">Mi Perfil</a>
+			  <a class="AppO-bar-item AppO-button" href="#">Mis Pedidos</a>
+			  <a class="AppO-bar-item AppO-button" href="#">Pedido de hoy</a>
+			  <a class="AppO-bar-item AppO-button" href="#">Registrar Ubicaci&oacute;n</a>
+			  <br>
+			  <br>
+			  <br>
+			  <a class="AppO-bar-item AppO-button" href="#">Ayuda</a>
+		</nav>
+
+		<!-- Overlay effect when opening sidebar on small screens -->
+		<div class="AppO-overlay" onclick="Appmenu_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
 		</header>
+		<br>
+		<br>
 		<br>
 		<br>
 		<input type="text" name="username" id="username" placeholder="Usuario">
 		<br>
-		<input type="text" name="password" id="password" placeholder="Password">
+		<input type="text" name="password" id="password" placeholder="Contrase&ntilde;a">
 		<br>
 		<br>
 		<button type="button" id="login">Entrar</button>
