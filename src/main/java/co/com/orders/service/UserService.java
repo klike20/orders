@@ -1,15 +1,18 @@
 package co.com.orders.service;
 
 import javax.ws.rs.GET;
-
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 
 import co.com.orders.dao.GenericDAOImpl;
+import co.com.orders.util.EmailSender;
 
 import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -69,6 +72,51 @@ public class UserService {
 			System.out.println("Failed to make connection!");
 		}
 		
-		return "{'salarta','otra'}";
+		return "failed";
 	}
+	
+	@POST
+    public Response saveUser(String userInfo) {
+        String output = "POST:Jersey say : " + userInfo;
+        
+		System.out.println("Data: "+userInfo);
+		String[] dataArray = userInfo.split(",");
+        
+		Connection connection = GenericDAOImpl.getConnection();
+
+		if (connection != null) {
+			System.out.println("You made it, take control your database now!");
+			
+			PreparedStatement st = null;
+			
+			try {
+				st = connection.prepareStatement("INSERT INTO public.\"USUARIO_RECEPTOR\"(\n" + 
+						"	\"usuarioId\", cedula, contrasena, celular, telefono, correo, \"sedeRecepId\")\n" + 
+						"	VALUES (nextval('SEQ_USUARIO_RECEPTOR'), ?, ?, ?, ?, ?, ?);");
+				st.setString(1, dataArray[0]);
+				st.setString(2, dataArray[1]);
+				st.setString(3, dataArray[2]);
+				st.setString(4, dataArray[3]);
+				st.setString(5, dataArray[4]);
+				st.setString(6, dataArray[5]);
+				st.executeUpdate();	
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} finally {
+				try {
+					st.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			
+			
+		} else {
+			System.out.println("Failed to make connection!");
+		}
+        
+                
+        return Response.status(200).entity(output).build();
+    }
 }
