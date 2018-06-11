@@ -1,5 +1,32 @@
 <html>
 <head>
+<style>
+header, footer {
+    padding: 0.01em;
+    color: white;
+    background-color: #0BB453;
+    clear: left;
+    text-align: left;
+}
+input {
+  border: 1px solid transparent;
+  background-color: #f1f1f1;
+  padding: 10px;
+  font-size: 16px;
+}
+input[type=text] {
+  background-color: #f1f1f1;
+}
+button[type=button] {
+  font-size: 16px;
+  background-color: #0BB453;
+  color: white;
+  cursor: pointer;
+}
+.center-container{
+	text-align: center;
+}
+</style>
 <script src="jquery-3.3.1.min.js"></script>
 <script>
 $( document ).ready(function() {
@@ -141,10 +168,20 @@ function deleteItem(item) {
 	<div id="initScreen">
 		<img src="https://photos-6.dropbox.com/t/2/AADoA6e4BJis-Mz2Tut4bszJTP9ly2CvfccFsRFxIwLQNQ/12/64874334/png/32x32/1/_/1/2/Salata%20inicio.png/EIHKqzIYrnggAigC/IybePGHhjh6Is04nlt4Blc7iT54AHuwa9DcLVN7iCnc?preserve_transparency=1&size=32x32&size_mode=5" alt="Imagen inicio" style="width:60%;position:absolute;top:20%;left:20%;">
 	</div>
-	<div id="loginDiv">
-		Usuario: <input type="text" name="username" id="username">
-		Contraseña: <input type="text" name="password" id="password">
+	<div id="loginDiv" class="center-container">
+		<header>
+   		<h1>Iniciar Sesion</h1>
+		</header>
+		<br>
+		<br>
+		<input type="text" name="username" id="username" placeholder="Usuario">
+		<br>
+		<input type="text" name="password" id="password" placeholder="Password">
+		<br>
+		<br>
 		<button type="button" id="login">Entrar</button>
+		<br>
+		<br>
 		<button type="button" id="register">Registrarse</button>
 	</div>
 	<div id="registerDiv">
