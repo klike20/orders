@@ -99,13 +99,22 @@ public class UserService {
 				st.setString(4, dataArray[3]);
 				st.setString(5, dataArray[4]);
 				st.setString(6, dataArray[5]);
-				st.executeUpdate();	
+				st.executeUpdate();
+				
+				connection.commit();
 			} catch (SQLException e) {
+				try {
+					connection.rollback();
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			} finally {
 				try {
 					st.close();
+					connection.close();
 				} catch (SQLException e) {
 					e.printStackTrace();
 				}
