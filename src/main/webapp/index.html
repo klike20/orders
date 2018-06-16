@@ -99,11 +99,14 @@ $( "#submitRegister" ).click(function() {
  
  $( "#add" ).click(function() {
 	 
-	 var productName = $("#productName").val();
+	 var product = $("#product");
+	 var productName = $("option:selected", product).text();
+	 var productId = product.val();
+	 
 	 var unit = $("#unit").val();
 	 var amount = $("#amount").val();
 	 var obs = $("#obs").val();
-	 $("#products").append('<li><input type="hidden" name="productsItem" value="'+productName+","+unit+","+amount+","+obs+'">'+productName+" "+unit+" "+amount+" "+obs+' <input type="button" value="-" onclick="deleteItem(this);" /></li>');
+	 $("#products").append('<li><input type="hidden" name="productsItem" value="'+productId+","+unit+","+amount+","+obs+'">'+productName+" "+unit+" "+amount+" "+obs+' <input type="button" value="-" onclick="deleteItem(this);" /></li>');
 	 i++;
 	 $( "#productsDiv" ).show();
      $( "#productDiv" ).hide();
@@ -116,6 +119,8 @@ $( "#submitRegister" ).click(function() {
 	 $('[name="productsItem"]').each(function() {
 		  order = order + $( this ).val() + ";";
 		});
+	 
+	 order = userId+","+officeId+","+"1"+":"+order;
 	 
 	 alert(order);
 	 
@@ -239,6 +244,8 @@ var overlayBg = document.getElementById("myOverlay");
 	</div>
 	<div id="productDiv">
 		Producto: <input type="text" name="productName" id="productName">
+		<select name="product" id="product"> <option value="1">limon</option> </select>
+		
 		Unidad: <select name="unit" id="unit"> <option value="kg">kg</option>  <option value="und">und</option></select>
 		Cantidad: <input type="text" name="amount" id="amount">
 		Observaciones: <input type="text" name="obs" id="obs">
