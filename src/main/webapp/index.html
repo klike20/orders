@@ -8,10 +8,11 @@
 $( document ).ready(function() {
 	
 var userId = "";
+var companyId = "";
 var officeId = "";
 	
 var i = 0;
-var myusername = $("#username").val();
+/*var myusername = $("#username").val();
 $.ajax({
   type: "GET",
   url: "rest/companies",
@@ -20,7 +21,7 @@ $.ajax({
   success: function(data){
      $("#resultarea").text(data);
   }
-});
+});*/
 
 var x = document.getElementsByTagName("BODY")[0];
 x.style.backgroundColor = "#F5F5E7";
@@ -37,6 +38,7 @@ setTimeout(function() {
 }, 1500);
 
 
+//-------------------- LOGIN BUTTON ------------------------
 $( "#login" ).click(function() {
 	var username = $("#username").val();
 	var password = $("#password").val();
@@ -61,24 +63,110 @@ $( "#login" ).click(function() {
 		});
 });
 	
+	
+//-------------------- REGISTER PAGE ------------------------
 $( "#register" ).click(function() {
+	
+	$( "#cellphone" ).prop( "disabled", true );
+	$( "#phone" ).prop( "disabled", true );
+	$( "#email" ).prop( "disabled", true );
+	
 	$( "#loginDiv" ).hide();
 	$( "#registerDiv" ).show();
 });
 
-$( "#submitRegister" ).click(function() {
+$( "#idEmpRecep" ).change(function() {
+	validateCompany();
+});
 
-	var company = $("#company").val();
-	var user = $("#user").val();
+$( "#passEmpRecep" ).change(function() {
+	validateCompany();
+});
+
+function validateCompany() {
+	var username = $("#idEmpRecep").val();
+	var password = $("#passEmpRecep").val();
+	
+	if (username != null && password != null) {
+		$( "#cellphone" ).val("");
+		$( "#phone" ).val("");
+		$( "#email" ).val("");
+		var theData = username+","+password;
+		$.ajax({
+			  type: "GET",
+			  url: "rest/company",
+			  data: "data="+theData,
+			  cache: false,
+			  success: function(data){
+			     if (data == "failed") {
+			    	 	companyId = "";
+			    		$( "#cellphone" ).prop( "disabled", true );
+			    		$( "#phone" ).prop( "disabled", true );
+			    		$( "#email" ).prop( "disabled", true );
+			    		
+			    		$('#office').empty();
+			    		
+			     } else {
+			    	 	companyId = data;
+			    		$( "#cellphone" ).prop( "disabled", false );
+			    		$( "#phone" ).prop( "disabled", false );
+			    		$( "#email" ).prop( "disabled", false );
+			    		
+			    		$.ajax({
+				  			  type: "GET",
+				  			  url: "rest/company/office",
+				  			  data: "company="+companyId,
+				  			  cache: false,
+				  			  success: function(data){
+				  			     if (data == "failed") {
+				  			    		//Show a message with the issue
+				  			     } else {
+				  			    	 	if (data != "") {
+				  			    	 		var arrayOffices = data.split(';');
+				  			    	 		$.each(arrayOffices, function( index, value ) {
+				  			    	 		  	//alert( index + ": " + value );
+				  			    	 		  	if (value != "") {
+					  			    	 			var officeData = value.split(',');
+					  			    	 			currentOfficeId = officeData[0];
+						  				    	    currentOfficeName = officeData[1];
+							  				    	var o = new Option(currentOfficeName, currentOfficeId);
+							  				    	/// jquerify the DOM object 'o' so we can use the html method
+							  				    	$(o).html(currentOfficeName);
+							  				    	$("#office").append(o);
+				  			    	 			}
+				  			    	 		});
+				  			    	 	} else {
+				  			    	 		//alert( "Empty!" );
+				  			    	 		$('#office').empty();
+				  			    	 	}
+				  			     }
+				  			  }
+				  			});
+			    		
+			     }
+			  }
+			});
+	}
+}
+
+
+//-------------------- REGISTER BUTTON ------------------------
+$( "#submitRegister" ).click(function() {
+	
+	var idUser = $("#idUser").val();
+	var pass = $("#pass").val();
+	var office = $("#office").val();
+	var cellphone = $("#cellphone").val();
 	var phone = $("#phone").val();
 	var email = $("#email").val();
-	var theData = "{"+company+","+user+","+phone+","+email+"}";
+	
+	var theData = idUser+","+pass+","+cellphone+","+phone+","+email+","+office;
 	
 	alert(theData);
 	
 	$.ajax({
 		  type: "POST",
-		  url: "rest/register",
+		  url: "rest/user",
 		  data: theData,
 		  cache: false,
 		  success: function(data){
@@ -186,10 +274,10 @@ var overlayBg = document.getElementById("myOverlay");
 		<!-- Navbar -->
 		<div class="AppO-top">
   			<div class="AppO-bar AppO-theme AppO-top AppO-left-align AppO-large">
-    		<a class="AppO-bar-item AppO-button AppO-left AppO-large" href="javascript:void(0)" onclick="Appmenu_open()">
-    			<i class="fa fa-bars"></i>
-    		</a>
-    		<a class="AppO-bar-item">Iniciar Sesi&oacute;n</a>
+		    		<a class="AppO-bar-item AppO-button AppO-left AppO-large" href="javascript:void(0)" onclick="Appmenu_open()">
+		    			<i class="fa fa-bars"></i>
+		    		</a>
+		    		<a class="AppO-bar-item">Iniciar Sesi&oacute;n</a>
   			</div>
 		</div>
 
@@ -219,7 +307,7 @@ var overlayBg = document.getElementById("myOverlay");
 		<br>
 		<input type="text" name="username" id="username" placeholder="Usuario">
 		<br>
-		<input type="text" name="password" id="password" placeholder="Contrase&ntilde;a">
+		<input type="password" name="password" id="password" placeholder="Contrase&ntilde;a">
 		<br>
 		<br>
 		<button type="button" id="login">Entrar</button>
@@ -228,10 +316,24 @@ var overlayBg = document.getElementById("myOverlay");
 		<button type="button" id="register">Registrarse</button>
 	</div>
 	<div id="registerDiv">
-		Nombre de la empresa: <input type="text" name="company" id="company">
-		Usuario: <input type="text" name="user" id="user">
-		Telefono: <input type="text" name="phone" id="phone">
-		Email: <input type="text" name="email" id="email">
+		<input type="text" name="idUser" id="idUser" placeholder="C&eacute;dula">
+		<br>
+		<input type="password" name="pass" id="pass" placeholder="Contrase&ntilde;a">
+		<br>
+		<input type="password" name="conPass" id="conPass" placeholder="Confirmar Contrase&ntilde;a">
+		<br>
+		<input type="text" name="idEmpRecep" id="idEmpRecep" placeholder="NIT o CC destinatario">
+		<br>
+		<input type="password" name="passEmpRecep" id="passEmpRecep" placeholder="Contrase&ntilde;a destinatario">
+		<br>
+		<select name="office" id="office"></select>
+		<br>
+		<input type="text" name="cellphone" id="cellphone" placeholder="Celular">
+		<br>
+		<input type="text" name="phone" id="phone" placeholder="Tel&eacute;fono">
+		<br>
+		<input type="text" name="email" id="email" placeholder="Correo">
+		<br>
 		<button type="button" id="submitRegister">Registro</button>
 	</div>
 	<div id="productsDiv">

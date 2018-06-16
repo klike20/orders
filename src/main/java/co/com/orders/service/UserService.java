@@ -90,6 +90,7 @@ public class UserService {
 			PreparedStatement st = null;
 			
 			try {
+				
 				st = connection.prepareStatement("INSERT INTO public.\"USUARIO_RECEPTOR\"(\n" + 
 						"	\"usuarioId\", cedula, contrasena, celular, telefono, correo, \"sedeRecepId\")\n" + 
 						"	VALUES (nextval('SEQ_USUARIO_RECEPTOR'), ?, ?, ?, ?, ?, ?);");
@@ -101,16 +102,16 @@ public class UserService {
 				st.setString(6, dataArray[5]);
 				st.executeUpdate();
 				
-				connection.commit();
+				//connection.commit();
 			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 				try {
 					connection.rollback();
 				} catch (SQLException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
-				// TODO Auto-generated catch block
-				e.printStackTrace();
 			} finally {
 				try {
 					st.close();

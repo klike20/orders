@@ -13,7 +13,7 @@ import javax.ws.rs.core.MediaType;
 
 import co.com.orders.dao.GenericDAOImpl;
 
-@Path("/companies")
+@Path("/company")
 public class CompanyService {
 	// This method is called if TEXT_PLAIN is request
 	  @GET
@@ -70,7 +70,7 @@ public class CompanyService {
 	  }
 	  
 	  @GET
-	  @Path("/offices")
+	  @Path("/office")
 	  @Produces(MediaType.TEXT_PLAIN)
 	  public String getOffices(@QueryParam("company") String companyId) {
 		  
@@ -94,12 +94,15 @@ public class CompanyService {
 					while (rs.next()) {
 						int officeId = rs.getInt(1);
 						String name = rs.getString(2);
-						offices =  officeId+","+name+";";
-					} 
+						offices = offices + officeId+","+name+";";
+					}
+					
+					System.out.println("Offices: "+offices);
 					
 				} catch (SQLException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
+					return "failed";
 				} finally {
 					try {
 						st.close();
