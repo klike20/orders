@@ -26,6 +26,7 @@ $.ajax({
 var x = document.getElementsByTagName("BODY")[0];
 x.style.backgroundColor = "#F5F5E7";
 
+$( "#headerBar" ).hide();
 $( "#loginDiv" ).hide();
 $( "#registerDiv" ).hide();
 $( "#productsDiv" ).hide();
@@ -34,6 +35,9 @@ $( "#productDiv" ).hide();
 setTimeout(function() {
 	x.style.backgroundColor = "white";
 	$( "#initScreen" ).hide();
+
+	$( "#title" ).html("Iniciar Sesi&oacute;n");
+	$( "#headerBar" ).show();
 	$( "#loginDiv" ).show();
 }, 1500);
 
@@ -72,6 +76,8 @@ $( "#register" ).click(function() {
 	$( "#email" ).prop( "disabled", true );
 	
 	$( "#loginDiv" ).hide();
+
+	$( "#title" ).text("Registro");
 	$( "#registerDiv" ).show();
 });
 
@@ -164,17 +170,17 @@ $( "#submitRegister" ).click(function() {
 	
 	alert(theData);
 	
-	$.ajax({
+/*	$.ajax({
 		  type: "POST",
 		  url: "rest/user",
 		  data: theData,
 		  cache: false,
-		  success: function(data){
+		  success: function(data){*/
 		     $("#resultarea").text("Register success: "+data);
 		     $( "#registerDiv" ).hide();
 		     $( "#productsDiv" ).show();
-		  }
-		});
+/*		  }
+		});*/
  });
  
  $( "#addProduct" ).click(function() {
@@ -269,20 +275,19 @@ var overlayBg = document.getElementById("myOverlay");
 	<div id="initScreen">
 		<img src="Salata.png" alt="Logo" style="width:60%;position:absolute;top:20%;left:20%;">
 	</div>
-	<div id="loginDiv" class="center-container">
-		<header>
+	<header>
 		<!-- Navbar -->
-		<div class="AppO-top">
+		<div class="AppO-top" id="headerBar">
   			<div class="AppO-bar AppO-theme AppO-top AppO-left-align AppO-large">
 		    		<a class="AppO-bar-item AppO-button AppO-left AppO-large" href="javascript:void(0)" onclick="Appmenu_open()">
 		    			<i class="fa fa-bars"></i>
 		    		</a>
-		    		<a class="AppO-bar-item">Iniciar Sesi&oacute;n</a>
+		    		<a class="AppO-bar-item" id="title">Iniciar Sesi&oacute;n</a>
   			</div>
 		</div>
 
 		<!-- Sidebar -->
-		<nav class="AppO-sidebar AppO-bar-block AppO-collapse AppO-large AppO-theme-l5 AppO-animate-left" id="mySidebar">
+		<nav class="AppO-sidebar AppO-bar-block AppO-collapse AppO-medium AppO-theme-l5 AppO-animate-left" id="mySidebar">
 	  		<a href="javascript:void(0)" onclick="Appmenu_close()" class="AppO-right AppO-xlarge AppO-padding-large" title="Close Menu">
 	    	<i class="fa fa-remove"></i>
 	  		</a>
@@ -300,7 +305,8 @@ var overlayBg = document.getElementById("myOverlay");
 
 		<!-- Overlay effect when opening sidebar on small screens -->
 		<div class="AppO-overlay" onclick="Appmenu_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
-		</header>
+	</header>
+	<div id="loginDiv" class="center-container">		
 		<br>
 		<br>
 		<br>
@@ -315,15 +321,18 @@ var overlayBg = document.getElementById("myOverlay");
 		<br>
 		<button type="button" id="register">Registrarse</button>
 	</div>
-	<div id="registerDiv">
+	<div id="registerDiv"  class="center-container">
+		<br>
+		<br>
+		<br>
 		<input type="text" name="idUser" id="idUser" placeholder="C&eacute;dula">
 		<br>
-		<input type="password" name="pass" id="pass" placeholder="Contrase&ntilde;a">
+		<input type="password" name="pass" id="pass" placeholder="Contrase&ntilde;a nueva">
 		<br>
 		<input type="password" name="conPass" id="conPass" placeholder="Confirmar Contrase&ntilde;a">
 		<br>
 		<input type="text" name="idEmpRecep" id="idEmpRecep" placeholder="NIT o CC destinatario">
-		<br>
+		<br>*Sin digito de verificaci&oacute;n<br>
 		<input type="password" name="passEmpRecep" id="passEmpRecep" placeholder="Contrase&ntilde;a destinatario">
 		<br>
 		<select name="office" id="office"></select>

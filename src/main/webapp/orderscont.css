@@ -19,21 +19,32 @@ header, footer {
     background-color: #0BB453;
     clear: left;
     text-align: left;
+    font-family: verdana;
 }
 input {
   border: 1px solid transparent;
   background-color: #f1f1f1;
   padding: 10px;
   font-size: 16px;
+  font-family: Verdana;
 }
 input[type=text] {
   background-color: #f1f1f1;
+}
+select {
+  border: 1px solid transparent;
+  background-color: #f1f1f1;
+  padding: 10px;
+  font-size: 16px;
+  font-family: Verdana;
+  width: auto;
 }
 button[type=button] {
   font-size: 16px;
   background-color: #0BB453;
   color: white;
   cursor: pointer;
+  font-family: verdana;
 }
 .center-container{
 	text-align: center;
@@ -55,7 +66,7 @@ button[type=button] {
 .AppO-bar .AppO-button{white-space:normal}
 .AppO-bar-block .AppO-bar-item{width:100%;display:block;padding:8px 16px;text-align:left;border:none;white-space:normal;float:none;outline:0}
 .AppO-bar-block .AppO-center .AppO-bar-item{text-align:center}.AppO-block{display:block;width:100%}
-.AppO-sidebar{height:100%;width:200px;background-color:#fff;position:fixed!important;z-index:1;overflow:auto}
+.AppO-sidebar{height:100%;width:250px;background-color:#fff;position:fixed!important;z-index:1;overflow:auto}
 
 /* temas */
 .AppO-theme {color:white !important; background-color:#0BB453 !important}
