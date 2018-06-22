@@ -203,7 +203,7 @@ $( "#submitRegister" ).click(function() {
  $( "#add" ).click(function() {
 	 
 	 var product = $("#product");
-	 var productName = $("option:selected", product).text();
+	 var productName = $("option:selected", product.text();
 	 var productId = product.val();
 	 
 	 var unit = $("#unit").val();
@@ -451,7 +451,7 @@ var overlayBg = document.getElementById("myOverlay");
 		<!--Make sure the form has the autocomplete function switched off:-->
 		<form autocomplete="off" action="/action_page.php">
 		  <div class="autocomplete" style="width:300px;">
-		    <input type="text" name="productName" id="productName" placeholder="Escriba el producto">
+		    <input type="text" name="product" id="product" placeholder="Escriba el producto">
 		  </div>
 		</form>
 		<script>
@@ -555,8 +555,8 @@ var overlayBg = document.getElementById("myOverlay");
 			/*An array containing all the products names in the world:*/
 			var products = ["Albahaca","Berengena","Cebolla Blanca","Cebolla Roja"];
 
-			/*initiate the autocomplete function on the "productName" element, and pass along the products array as possible autocomplete values:*/
-			autocomplete(document.getElementById("productName"), products);
+			/*initiate the autocomplete function on the "product" element, and pass along the products array as possible autocomplete values:*/
+			autocomplete(document.getElementById("product"), products);
 		</script>
 		<input name="unit" id="unit" placeholder="Unidad de medida"> 
 		<br>
