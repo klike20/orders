@@ -30,7 +30,9 @@ input {
   font-family: Verdana;
 }
 input[type=text] {
-  background-color: #f1f1f1;
+  
+  position:relative;
+  left:0px;
 }
 select {
   border: 1px solid transparent;
@@ -50,11 +52,44 @@ button[type=button] {
 .center-container{
 	text-align: center;
 }
-/* Posiciones */
+
+.autocomplete {
+  /*the container must be positioned relative:*/
+  position: relative;
+  display: inline-block;
+}
+
+.autocomplete-items {
+  position: absolute;
+  border: 1px solid #d4d4d4;
+  border-bottom: none;
+  border-top: none;
+  z-index: 99;
+  /*position the autocomplete items to be the same width as the container:*/
+  top: 100%;
+  left: 0;
+  right: 0;
+}
+.autocomplete-items div {
+  padding: 10px;
+  cursor: pointer;
+  background-color: #fff; 
+  border-bottom: 1px solid #d4d4d4; 
+}
+.autocomplete-items div:hover {
+  /*when hovering an item:*/
+  background-color: #e9e9e9; 
+}
+.autocomplete-active {
+  /*when navigating through the items using the arrow keys:*/
+  background-color: DodgerBlue !important; 
+  color: #ffffff; 
+}
+/* Positions */
 .AppO-top,.AppO-bottom{position:fixed;width:100%;z-index:1}.AppO-top{top:0}.AppO-bottom{bottom:0}
 .AppO-left{float:left!important}.AppO-right{float:right!important}
 
-/* botones */
+/* buttons */
 .AppO-button{border:none;display:inline-block;padding:8px 16px;vertical-align:middle;
   overflow:hidden;text-decoration:none;color:inherit;background-color:inherit;
   text-align:center;cursor:pointer;white-space:nowrap}
@@ -63,7 +98,7 @@ button[type=button] {
 .AppO-disabled,.AppO-button:disabled{cursor:not-allowed;opacity:0.3}.AppO-disabled *,:disabled *{pointer-events:none}
 .AppO-button:hover{color:#000!important;background-color:#ccc!important}
 
-/* barras */
+/* bars */
 .AppO-bar{width:100%;overflow:hidden}.AppO-center .AppO-bar{display:inline-block;width:auto}
 .AppO-bar .AppO-bar-item{padding:16px 16px;float:left;width:auto;border:none;display:block;outline:0}
 .AppO-bar .AppO-dropdown-hover,.AppO-bar .AppO-dropdown-click{position:static;float:left}
@@ -72,25 +107,30 @@ button[type=button] {
 .AppO-bar-block .AppO-center .AppO-bar-item{text-align:center}.AppO-block{display:block;width:100%}
 .AppO-sidebar{height:100%;width:250px;background-color:#fff;position:fixed!important;z-index:1;overflow:auto}
 
-/* temas */
+/* themes */
 .AppO-theme {color:white !important; background-color:#0BB453 !important}
-.AppO-theme-l5 {color:#000 !important; background-color:#f0f0f0 !important}
+.AppO-theme-l5 {color:grey !important; background-color:#f0f0f0 !important}
 
-/* alineaciones de texto */
+/* text align */
 .AppO-left-align{text-align:left!important}.AppO-right-align{text-align:right!important}.AppO-justify{text-align:justify!important}.AppO-center{text-align:center!important}
 
-/* Tamano de letras */
+/* fonts size */
 .AppO-tiny{font-size:10px!important}.AppO-small{font-size:12px!important}.AppO-medium{font-size:15px!important}.AppO-large{font-size:18px!important}
 .AppO-xlarge{font-size:24px!important}.AppO-xxlarge{font-size:36px!important}.AppO-xxxlarge{font-size:48px!important}.AppO-jumbo{font-size:64px!important}
 
 /* menu bars */
-.fa{display:inline-block;font:normal normal normal 14px/1;font-size:inherit;text-rendering:auto;}
-.fa-bars:before{content:"\f0c9"}
-.fa-remove:before{content:"\f00d"}
+.bar{
+    width: 21px;
+    height: 3px;
+    background-color: white;
+    margin: 4px 0;
+    
+}
+.x-remove{color: grey}
 .AppO-sidebar.AppO-collapse{display:none}
 .AppO-animate-left{position:relative;animation:animateleft 0.4s}@keyframes animateleft{from{left:-300px;opacity:0} to{left:0;opacity:1}}
 
-/* espaciado */
+/* spaces */
 .AppO-padding-small{padding:4px 8px!important}.AppO-padding{padding:8px 16px!important}.AppO-padding-large{padding:12px 24px!important}
 
 .AppO-overlay{position:fixed;display:none;width:100%;height:100%;top:0;left:0;right:0;bottom:0;background-color:rgba(0,0,0,0.5);z-index:0}
