@@ -178,17 +178,17 @@ $( "#submitRegister" ).click(function() {
 	
 	alert(theData);
 	
-/*	$.ajax({
+	$.ajax({
 		  type: "POST",
 		  url: "rest/user",
 		  data: theData,
 		  cache: false,
-		  success: function(data){*/
-		    // $("#resultarea").text("Register success: "+data);
+		  success: function(data){
+		     $("#resultarea").text("Register success: "+data);
 		     $( "#registerDiv" ).hide();
 		     $( "#productsDiv" ).show();
-/*		  }
-		});*/
+		  }
+		});
 		$( "#title" ).text("Crear pedido");
  });
  
