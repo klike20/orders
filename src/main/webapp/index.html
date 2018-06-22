@@ -176,11 +176,12 @@ $( "#submitRegister" ).click(function() {
 		  data: theData,
 		  cache: false,
 		  success: function(data){*/
-		     $("#resultarea").text("Register success: "+data);
+		    // $("#resultarea").text("Register success: "+data);
 		     $( "#registerDiv" ).hide();
 		     $( "#productsDiv" ).show();
 /*		  }
 		});*/
+		$( "#title" ).text("Crear pedido");
  });
  
  $( "#addProduct" ).click(function() {
@@ -188,7 +189,7 @@ $( "#submitRegister" ).click(function() {
 	 $( "#productsDiv" ).hide();
      $( "#productDiv" ).show();
 
-	
+	$( "#title" ).text("Agregar producto");
  });
  
  $( "#add" ).click(function() {
@@ -204,7 +205,7 @@ $( "#submitRegister" ).click(function() {
 	 i++;
 	 $( "#productsDiv" ).show();
      $( "#productDiv" ).hide();
-
+	 $( "#title" ).text("Crear pedido");
 	
  });
  
@@ -268,6 +269,82 @@ var overlayBg = document.getElementById("myOverlay");
     mySidebar.style.display = "none";
     overlayBg.style.display = "none";
 }
+
+
+function Appmenu_gomyprofile() {
+// Get the Sidebar
+var mySidebar = document.getElementById("mySidebar");
+
+// Get the DIV with overlay effect
+var overlayBg = document.getElementById("myOverlay");
+
+    mySidebar.style.display = "none";
+    overlayBg.style.display = "none";
+	$( "#loginDiv" ).hide();
+	$( "#productDiv" ).hide();
+    $( "#productsDiv" ).hide();
+    $( "#registerDiv" ).show();
+}
+
+function Appmenu_gomyorders() {
+// Get the Sidebar
+var mySidebar = document.getElementById("mySidebar");
+
+// Get the DIV with overlay effect
+var overlayBg = document.getElementById("myOverlay");
+
+    mySidebar.style.display = "none";
+    overlayBg.style.display = "none";
+	$( "#loginDiv" ).hide();
+	$( "#productDiv" ).hide();
+    $( "#productsDiv" ).hide();
+    $( "#registerDiv" ).hide();
+}
+
+function Appmenu_gomylist() {
+// Get the Sidebar
+var mySidebar = document.getElementById("mySidebar");
+
+// Get the DIV with overlay effect
+var overlayBg = document.getElementById("myOverlay");
+
+    mySidebar.style.display = "none";
+    overlayBg.style.display = "none";
+	$( "#loginDiv" ).hide();
+	$( "#registerDiv" ).hide();
+	$( "#productDiv" ).hide();
+    $( "#productsDiv" ).show();
+}
+
+function Appmenu_gomylocation() {
+// Get the Sidebar
+var mySidebar = document.getElementById("mySidebar");
+
+// Get the DIV with overlay effect
+var overlayBg = document.getElementById("myOverlay");
+
+    mySidebar.style.display = "none";
+    overlayBg.style.display = "none";
+	$( "#loginDiv" ).hide();
+	$( "#registerDiv" ).hide();
+	$( "#productDiv" ).hide();
+    $( "#productsDiv" ).hide();
+}
+
+function Appmenu_gohelp() {
+// Get the Sidebar
+var mySidebar = document.getElementById("mySidebar");
+
+// Get the DIV with overlay effect
+var overlayBg = document.getElementById("myOverlay");
+
+    mySidebar.style.display = "none";
+    overlayBg.style.display = "none";
+	$( "#loginDiv" ).hide();
+	$( "#registerDiv" ).hide();
+	$( "#productDiv" ).hide();
+    $( "#productsDiv" ).hide();
+}
 </script>
 
 </head>
@@ -280,7 +357,9 @@ var overlayBg = document.getElementById("myOverlay");
 		<div class="AppO-top" id="headerBar">
   			<div class="AppO-bar AppO-theme AppO-top AppO-left-align AppO-large">
 		    		<a class="AppO-bar-item AppO-button AppO-left AppO-large" href="javascript:void(0)" onclick="Appmenu_open()">
-		    			<i class="fa fa-bars"></i>
+		    			<i class="fa fa-bars">
+		    				::before
+		    			</i>
 		    		</a>
 		    		<a class="AppO-bar-item" id="title">Iniciar Sesi&oacute;n</a>
   			</div>
@@ -292,15 +371,14 @@ var overlayBg = document.getElementById("myOverlay");
 	    	<i class="fa fa-remove"></i>
 	  		</a>
 			  <h4 class="AppO-bar-item"><b>Menu</b></h4>
-			  <a class="AppO-bar-item AppO-button" href="#">Inicio</a>
-			  <a class="AppO-bar-item AppO-button" href="#">Mi Perfil</a>
-			  <a class="AppO-bar-item AppO-button" href="#">Mis Pedidos</a>
-			  <a class="AppO-bar-item AppO-button" href="#">Pedido de hoy</a>
-			  <a class="AppO-bar-item AppO-button" href="#">Registrar Ubicaci&oacute;n</a>
+			  <a class="AppO-bar-item AppO-button" href="javascript:void(0)" onclick="Appmenu_gomyprofile()">Mi Perfil</a>
+			  <a class="AppO-bar-item AppO-button" href="javascript:void(0)" onclick="Appmenu_gomyorders()">Mis Pedidos</a>
+			  <a class="AppO-bar-item AppO-button" href="javascript:void(0)" onclick="Appmenu_gomylist()">Pedido de hoy</a>
+			  <a class="AppO-bar-item AppO-button" href="javascript:void(0)" onclick="Appmenu_gomylocation()">Registrar Ubicaci&oacute;n</a>
 			  <br>
 			  <br>
 			  <br>
-			  <a class="AppO-bar-item AppO-button" href="#">Ayuda</a>
+			  <a class="AppO-bar-item AppO-button" href="javascript:void(0)" onclick="Appmenu_gohelp()">Ayuda</a>
 		</nav>
 
 		<!-- Overlay effect when opening sidebar on small screens -->
@@ -332,10 +410,12 @@ var overlayBg = document.getElementById("myOverlay");
 		<input type="password" name="conPass" id="conPass" placeholder="Confirmar Contrase&ntilde;a">
 		<br>
 		<input type="text" name="idEmpRecep" id="idEmpRecep" placeholder="NIT o CC destinatario">
-		<br>*Sin digito de verificaci&oacute;n<br>
+		<br>
+		<a class="AppO-tiny">*Sin digito de verificaci&oacute;n</a>
+		<br>
 		<input type="password" name="passEmpRecep" id="passEmpRecep" placeholder="Contrase&ntilde;a destinatario">
 		<br>
-		<select name="office" id="office"></select>
+		<select name="office" id="office"> <option value="1">ejemplo</option> </select>
 		<br>
 		<input type="text" name="cellphone" id="cellphone" placeholder="Celular">
 		<br>
@@ -346,20 +426,30 @@ var overlayBg = document.getElementById("myOverlay");
 		<button type="button" id="submitRegister">Registro</button>
 	</div>
 	<div id="productsDiv">
-		Agregar producto: <button type="button" id="addProduct">+</button>
+		<br>
+		<br>
+		<br>
+		<br>
+		Agregar producto: <button type="button" id="addProduct" >+</button>
 		
 		<ol id="products">
 		</ol>
 		
 		<button type="button" id="send">Enviar</button>
 	</div>
-	<div id="productDiv">
-		Producto: <input type="text" name="productName" id="productName">
+	<div id="productDiv" class="center-container">
+		<br>
+		<br>
+		<br>
+		<br>
+		<input type="text" name="productName" id="productName" placeholder="Producto">
 		<select name="product" id="product"> <option value="1">limon</option> </select>
-		
+		<br>
 		Unidad: <select name="unit" id="unit"> <option value="kg">kg</option>  <option value="und">und</option></select>
 		Cantidad: <input type="text" name="amount" id="amount">
-		Observaciones: <input type="text" name="obs" id="obs">
+		<br>
+		<input type="text" name="obs" id="obs" placeholder="Observaciones">
+		<br>
 		<button type="button" id="add">Agregar</button>
 	</div>
 	<div id="resultarea"></div>

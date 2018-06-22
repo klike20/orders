@@ -1,5 +1,6 @@
 * {
     box-sizing: border-box;
+    font-family: Verdana;
 }
 .menu {
     width: 25%;
@@ -25,7 +26,7 @@ input {
   border: 1px solid transparent;
   background-color: #f1f1f1;
   padding: 10px;
-  font-size: 16px;
+  font-size: 14px;
   font-family: Verdana;
 }
 input[type=text] {
@@ -35,12 +36,12 @@ select {
   border: 1px solid transparent;
   background-color: #f1f1f1;
   padding: 10px;
-  font-size: 16px;
+  font-size: 14px;
   font-family: Verdana;
   width: auto;
 }
 button[type=button] {
-  font-size: 16px;
+  font-size: 14px;
   background-color: #0BB453;
   color: white;
   cursor: pointer;
@@ -54,8 +55,11 @@ button[type=button] {
 .AppO-left{float:left!important}.AppO-right{float:right!important}
 
 /* botones */
-.AppO-button{border:none;display:inline-block;padding:8px 16px;vertical-align:middle;overflow:hidden;text-decoration:none;color:inherit;background-color:inherit;text-align:center;cursor:pointer;white-space:nowrap}
-.AppO-button{-webkit-touch-callout:none;-webkit-user-select:none;-khtml-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}  
+.AppO-button{border:none;display:inline-block;padding:8px 16px;vertical-align:middle;
+  overflow:hidden;text-decoration:none;color:inherit;background-color:inherit;
+  text-align:center;cursor:pointer;white-space:nowrap}
+.AppO-button{-webkit-touch-callout:none;-webkit-user-select:none;-khtml-user-select:none;
+  -moz-user-select:none;-ms-user-select:none;user-select:none}  
 .AppO-disabled,.AppO-button:disabled{cursor:not-allowed;opacity:0.3}.AppO-disabled *,:disabled *{pointer-events:none}
 .AppO-button:hover{color:#000!important;background-color:#ccc!important}
 
