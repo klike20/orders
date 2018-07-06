@@ -20,7 +20,7 @@ public class ProductService {
 	  @GET
 	  @Produces(MediaType.TEXT_PLAIN)
 	  public String getCompany(@QueryParam("empSurId") String empSurId) {
-		  	System.out.println("Data: "+empSurId);
+		  	System.out.println("EmpSurId: "+empSurId);
 						
 		  	String products = "";
 		  	
@@ -33,14 +33,14 @@ public class ProductService {
 				ResultSet rs = null;
 				
 				try {
-					st = connection.prepareStatement("SELECT p.\"productoId\", p.\"nombre\" FROM public.\"PRODUCTO\" AS p, public.\"PRODUCTOS_X_EMP\" AS pm WHERE pm.\"empSurId\" = ? AND p.\"productoId\" = pm.\"prodId\"");
+					st = connection.prepareStatement("SELECT p.\"codigo\", p.\"nombre\" FROM public.\"PRODUCTO\" AS p, public.\"PRODUCTOS_X_EMP\" AS pm WHERE pm.\"empSurId\" = ? AND p.\"productoId\" = pm.\"prodId\"");
 					st.setString(1, empSurId);
 					rs = st.executeQuery();
 					
 					while (rs.next()) {
-						String productId = rs.getString(1);
+						String code = rs.getString(1);
 						String name = rs.getString(2);
-						products =  productId+","+name+";";
+						products =  products + code+" "+name+";";
 					} 
 					
 				} catch (SQLException e) {
