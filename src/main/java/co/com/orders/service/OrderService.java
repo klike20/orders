@@ -101,19 +101,23 @@ public class OrderService {
 				
 				while (i < products.length) {
 					
+					System.out.println("products[i]: " + products[i]);
+					
 					String[] product = products[i].split(",");
 					
 					st = connection.prepareStatement("INSERT INTO public.\"DETALLE\"(\n" + 
 							"	\"detalleId\", \"orderId\", \"productoId\", unidad, cantidad, observaciones)\n" + 
 							"	VALUES (nextval('SEQ_DETALLE'), (SELECT MAX(\"orderId\") FROM public.\"ORDER\"), ?, ?, ?, ?);");
 					st.setString(1, product[0]);
-					st.setString(2, product[1]);
-					st.setString(3, product[2]);
-					st.setString(4, product[3]);
-					st.executeUpdate();	
+					st.setString(2, product[2]);
+					st.setInt(3, Integer.valueOf(product[3]));
+					st.setString(4, product[4]);
+					st.executeUpdate();
+					
+					i++;
 				}
 				
-				connection.commit();
+				//connection.commit();
 			} catch (SQLException e) {
 				try {
 					connection.rollback();

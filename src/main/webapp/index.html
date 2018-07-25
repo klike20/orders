@@ -49,8 +49,8 @@ $( "#login" ).click(function() {
 	var theData = username+","+password;
 	$.ajax({
 		  type: "GET",
-		  url: "http://ec2-18-219-170-84.us-east-2.compute.amazonaws.com:8080/orders/rest/user",
-		  //url: "rest/user",
+		  //url: "http://ec2-18-219-170-84.us-east-2.compute.amazonaws.com:8080/orders/rest/user",
+		  url: "rest/user",
 		  xhrFields: {
 			    // The 'xhrFields' property sets additional fields on the XMLHttpRequest.
 			    // This can be used to set the 'withCredentials' property.
@@ -219,7 +219,7 @@ $( "#submitRegister" ).click(function() {
  });
  
  $( "#send" ).click(function() {
-	 var order = officeId+","+userId+";";
+	 var order = "";
 	 $('[name="productsItem"]').each(function() {
 		  order = order + $( this ).val() + ";";
 		});

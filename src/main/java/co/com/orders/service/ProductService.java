@@ -40,7 +40,7 @@ public class ProductService {
 					while (rs.next()) {
 						String code = rs.getString(1);
 						String name = rs.getString(2);
-						products =  products + code+" "+name+";";
+						products =  products + code+","+name+";";
 					} 
 					
 				} catch (SQLException e) {
