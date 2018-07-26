@@ -109,9 +109,9 @@ public class OrderService {
 							"	\"detalleId\", \"orderId\", \"productoId\", unidad, cantidad, observaciones)\n" + 
 							"	VALUES (nextval('SEQ_DETALLE'), (SELECT MAX(\"orderId\") FROM public.\"ORDER\"), ?, ?, ?, ?);");
 					st.setString(1, product[0]);
-					st.setString(2, product[2]);
-					st.setInt(3, Integer.valueOf(product[3]));
-					st.setString(4, product[4]);
+					st.setString(2, product[1]);
+					st.setInt(3, Integer.valueOf(product[2]));
+					st.setString(4, product[3]);
 					st.executeUpdate();
 					
 					i++;

@@ -33,7 +33,7 @@ public class ProductService {
 				ResultSet rs = null;
 				
 				try {
-					st = connection.prepareStatement("SELECT p.\"codigo\", p.\"nombre\" FROM public.\"PRODUCTO\" AS p, public.\"PRODUCTOS_X_EMP\" AS pm WHERE pm.\"empSurId\" = ? AND p.\"productoId\" = pm.\"prodId\"");
+					st = connection.prepareStatement("SELECT p.\"productoId\", p.\"nombre\" FROM public.\"PRODUCTO\" AS p, public.\"PRODUCTOS_X_EMP\" AS pm WHERE pm.\"empSurId\" = ? AND p.\"productoId\" = pm.\"prodId\"");
 					st.setString(1, empSurId);
 					rs = st.executeQuery();
 					
