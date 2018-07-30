@@ -12,6 +12,7 @@ import javax.ws.rs.core.Response;
 
 import co.com.orders.dao.GenericDAOImpl;
 import co.com.orders.util.EmailSender;
+import co.com.orders.util.FileGenerator;
 
 @Path("/saveOrder")
 public class OrderService {
@@ -40,6 +41,10 @@ public class OrderService {
         String officeId = metaData[1];
         
         String deliverCompanyId = metaData[2];
+        
+        String email = "";
+        
+        String[] products = null;
 
 //		try {
 //
@@ -78,6 +83,7 @@ public class OrderService {
 			ResultSet rs = null;
 			
 			try {
+				//Insert the order
 				st = connection.prepareStatement("INSERT INTO public.\"ORDER\"(\n" + 
 						"	\"orderId\", fecha, \"usuarioId\", \"sedeId\", \"empSurId\")\n" + 
 						"	VALUES (nextval('SEQ_ORDER'), current_date, ?, ?, ?);");
@@ -95,7 +101,9 @@ public class OrderService {
 //					lastOrderId = rs.getInt(1);
 //				}
 				
-				String[] products = orderArray[1].split(";");
+				
+				//Insert the details of the order
+				products = orderArray[1].split(";");
 				
 				int i = 0;
 				
@@ -115,6 +123,15 @@ public class OrderService {
 					st.executeUpdate();
 					
 					i++;
+				}
+				
+				//Look for the email of the user
+				st = connection.prepareStatement("SELECT \"correo\" FROM public.\"USUARIO_RECEPTOR\" WHERE \"usuarioId\" = ?");
+				st.setString(1, userId);
+				rs = st.executeQuery();
+				
+				if (rs.next()) {
+					email = rs.getString(1);
 				}
 				
 				//connection.commit();
@@ -141,8 +158,10 @@ public class OrderService {
 			System.out.println("Failed to make connection!");
 		}
         
+        //Send the email to the user who made the order
+        EmailSender.send(email, order, null);
         
-        EmailSender.send("klike21@gmail.com", order);
+        EmailSender.send("klike21@gmail.com", "Archivo adjunto", FileGenerator.generateFile(products, officeId));
         
         return Response.status(200).entity(output).build();
     }

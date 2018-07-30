@@ -1,5 +1,6 @@
 package co.com.orders.util;
 
+import java.io.File;
 import java.util.*;
 import javax.mail.*;
 import javax.mail.internet.*;
@@ -15,7 +16,7 @@ public class EmailSender {
 	
 	private static final String password = "cifuen1985";
 	
-	public static void send(String to, String messageText) {    
+	public static void send(String to, String messageText, File file) {    
 	      // Recipient's email ID needs to be mentioned.
 		  // String to = "abcd@gmail.com";
 
@@ -23,7 +24,6 @@ public class EmailSender {
 	      String from = FROM;
 
 	      // Assuming you are sending email from localhost
-	      String host = "localhost";
 
 	      Properties props = new Properties();
 			props.put("mail.smtp.auth", "true");
@@ -55,7 +55,31 @@ public class EmailSender {
 	         message.setSubject(SUBJECT);
 
 	         // Now set the actual message
-	         message.setText(messageText);
+	         //message.setText(messageText);
+	         
+	      // Create the message part 
+	         BodyPart messageBodyPart = new MimeBodyPart();
+
+	         // Fill the message
+	         messageBodyPart.setText(messageText);
+	         
+	         // Create a multipar message
+	         Multipart multipart = new MimeMultipart();
+
+	         // Set text message part
+	         multipart.addBodyPart(messageBodyPart);
+
+	         // Part two is attachment
+	         if (file != null && file.exists()) {
+		         messageBodyPart = new MimeBodyPart();
+		         DataSource source = new FileDataSource(file);
+		         messageBodyPart.setDataHandler(new DataHandler(source));
+		         messageBodyPart.setFileName(file.getName());
+		         multipart.addBodyPart(messageBodyPart);
+	         }
+
+	         // Send the complete message parts
+	         message.setContent(multipart);
 
 	         // Send message
 	         Transport.send(message);
@@ -127,4 +151,8 @@ public class EmailSender {
 	         mex.printStackTrace();
 	      }
 	   }
+	
+	public static void main(String[] args) {
+		EmailSender.send("klike21@gmail.com", "Test", null);
+	}
 }

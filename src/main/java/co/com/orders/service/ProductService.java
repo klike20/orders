@@ -33,14 +33,15 @@ public class ProductService {
 				ResultSet rs = null;
 				
 				try {
-					st = connection.prepareStatement("SELECT p.\"productoId\", p.\"nombre\" FROM public.\"PRODUCTO\" AS p, public.\"PRODUCTOS_X_EMP\" AS pm WHERE pm.\"empSurId\" = ? AND p.\"productoId\" = pm.\"prodId\"");
+					st = connection.prepareStatement("SELECT p.\"productoId\", p.\"nombre\", p.\"unidad\" FROM public.\"PRODUCTO\" AS p, public.\"PRODUCTOS_X_EMP\" AS pm WHERE pm.\"empSurId\" = ? AND p.\"productoId\" = pm.\"prodId\"");
 					st.setString(1, empSurId);
 					rs = st.executeQuery();
 					
 					while (rs.next()) {
 						String code = rs.getString(1);
 						String name = rs.getString(2);
-						products =  products + code+","+name+";";
+						String unit = rs.getString(3);
+						products =  products + code+","+name+","+unit+";";
 					} 
 					
 				} catch (SQLException e) {

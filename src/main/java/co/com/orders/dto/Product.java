@@ -5,4 +5,6 @@ public class Product {
 	private String companyId;
 	private String name;
 	private String unit;
+	
+	
 }

@@ -458,7 +458,7 @@ var overlayBg = document.getElementById("myOverlay");
 		  </div>
 		</form>
 		<script>
-			function autocomplete(inp, inpId, arr) {
+			function autocomplete(inp, inpId, unit, arr) {
 			  /*the autocomplete function takes two arguments,
 			  the text field element and an array of possible autocompleted values:*/
 			  var currentFocus;
@@ -493,6 +493,7 @@ var overlayBg = document.getElementById("myOverlay");
 			          /*insert a input field that will hold the current array item's value:*/
 			          //b.innerHTML += "<input type='hidden' value='" + arr[i] + "'>";
 			          b.innerHTML += "<input type='hidden' value='" + productInfo[0] + "'>";
+			          b.innerHTML += "<input type='hidden' value='" + productInfo[2] + "'>";
 			          
 			          
 			          /*execute a function when someone clicks on the item value (DIV element):*/
@@ -500,6 +501,7 @@ var overlayBg = document.getElementById("myOverlay");
 			              /*insert the value for the autocomplete text field:*/
 			              inpId.value = this.getElementsByTagName("input")[0].value;
 			              inp.value = this.getElementsByTagName("span")[0].innerHTML;
+			              unit.value = this.getElementsByTagName("input")[1].value;
 			              console.log("b.click.inp: "+inp.value);
 			              console.log("b.click.inpId: "+inpId.value);
 			              /*close the list of autocompleted values,
@@ -607,7 +609,7 @@ var overlayBg = document.getElementById("myOverlay");
 				    	    });
 				    		
 						/*initiate the autocomplete function on the "product" element, and pass along the products array as possible autocomplete values:*/
-						autocomplete(document.getElementById("product"),document.getElementById("productId"), products);
+						autocomplete(document.getElementById("product"),document.getElementById("productId"),document.getElementById("unit"), products);
 				     }
 				  }
 				});
